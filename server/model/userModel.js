@@ -65,13 +65,8 @@ const userSchema = mongoose.Schema({
     default: "customer",
     required: true,
   },
-  address: {
-    street: String,
-    city: String,
-    zip: String,
-  },
   phone: {
-    type: Number,
+    type: String,
   },
   createdAt: {
     type: Date,
