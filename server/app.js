@@ -9,8 +9,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-if (process.env.MODE === "development") {
+if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
+const userRouter = require("./routes/userRoutes");
+app.use("/api/v1/users", userRouter);
 app.use(globalErrorController);
 module.exports = app;
