@@ -1,18 +1,19 @@
 const express = require("express");
 const morgan = require("morgan");
-const cors = require("cors");
-const globalErrorController = require("./middleware/globalErrorController");
+const { initRoutes } = require("./routes");
 require("dotenv").config({ path: "./config.env" });
-
+const initCORS = require("./middleware/cors");
 const app = express();
 
-app.use(cors());
+initCORS(app);
+
 app.use(express.json());
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
-const userRouter = require("./routes/userRoutes");
-app.use("/api/v1/users", userRouter);
-app.use(globalErrorController);
+
+// API ROUTES
+initRoutes(app);
+
 module.exports = app;
