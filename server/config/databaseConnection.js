@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-exports.ConnectDb = () => {
+exports.initDatabase = () => {
   mongoose
     .connect(process.env.URI)
     .then(() => {

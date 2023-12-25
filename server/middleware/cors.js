@@ -1,6 +1,6 @@
 const cors = require("cors");
 
-function initCORS(app) {
+exports.initCORS=(app)=> {
   app.use(
     cors({
       origin: [
@@ -17,4 +17,3 @@ function initCORS(app) {
   );
 }
 
-module.exports = initCORS;
