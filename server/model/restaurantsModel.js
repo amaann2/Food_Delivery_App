@@ -6,11 +6,21 @@ const restaurantSchema = mongoose.Schema({
     required: true,
   },
   description: String,
-  address: {
-    street: String,
-    city: String,
-    state: String,
-    postalCode: String,
+  location: {
+    type: {
+      type: String,
+      default: "Point",
+      enum: ["Point"],
+    },
+    coordinates: {
+      type: [Number],
+    },
+    address: {
+      street: String,
+      city: String,
+      state: String,
+      postalCode: String,
+    },
   },
   contact: {
     phone: String,
@@ -25,6 +35,7 @@ const restaurantSchema = mongoose.Schema({
     min: Number,
     max: Number,
   },
+  photos: [String],
   menu: [
     {
       type: mongoose.Schema.Types.ObjectId,

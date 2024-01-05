@@ -16,8 +16,16 @@ exports.createMenu = catchAsyncError(async (req, res, next) => {
   restaurant.menu.push(newMenu._id);
   await restaurant.save();
 
-  res.status(200).json({                           
+  res.status(200).json({
     status: "Success",
     menu: newMenu,
+  });
+});
+
+exports.getAllMenu = catchAsyncError(async (req, res, next) => {
+  const menus = await Menu.find();
+  res.status(200).json({
+    status: "Success",
+    menus,
   });
 });

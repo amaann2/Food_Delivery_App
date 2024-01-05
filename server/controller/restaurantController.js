@@ -16,3 +16,48 @@ exports.createRestaurant = catchAsyncError(async (req, res, next) => {
     restaurant: newRestaurant,
   });
 });
+
+exports.getAllRestaurants = catchAsyncError(async (req, res, next) => {
+  const restaurants = await Restaurant.find();
+  res.status(200).json({
+    status: "Success",
+    results: restaurants.length,
+    restaurants,
+  });
+});
+
+exports.getRestaurant = catchAsyncError(async (req, res, next) => {
+  const doc = await Restaurant.findById(req.params.id);
+  if (!doc) {
+    return next(new AppError("No document found with that ID", 404));
+  }
+  res.status(200).json({
+    status: "Success",
+    doc,
+  });
+});
+
+exports.updateRestaurant = catchAsyncError(async (req, res, next) => {
+  const doc = await Restaurant.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+  if (!doc) {
+    return next(new AppError("No document found with that ID", 404));
+  }
+  res.status(200).json({
+    status: "success",
+    doc,
+  });
+});
+
+exports.deleteRestaurant = catchAsyncError(async (req, res, next) => {
+  const doc = await Restaurant.findByIdAndDelete(req.params.id);
+  if (!doc) {
+    return next(new AppError("No documents found with that ID", 404));
+  }
+  res.status(204).json({
+    status: "success",
+    data: null,
+  });
+});
