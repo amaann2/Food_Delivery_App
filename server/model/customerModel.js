@@ -5,4 +5,18 @@ const customerSchema = mongoose.Schema({
     ref: "User",
     required: true,
   },
+  restaurant: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Restaurant",
+    required: true,
+  },
+  order: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Order",
+    },
+  ],
+  joined_date: {
+    type: Date,
+  },
 });

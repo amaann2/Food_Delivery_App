@@ -28,3 +28,4 @@ exports.getYourAdress = catchAsyncError(async (req, res, next) => {
     adress,
   });
 });
+
