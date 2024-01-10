@@ -12,6 +12,7 @@ node_modules
 config.env
 /node_modules
 config.env
+./env
 .env
 dist
 dist-ssr
