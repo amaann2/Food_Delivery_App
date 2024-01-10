@@ -11,7 +11,7 @@ const router = express.Router();
 
 router
   .route("/")
-  .get(isAuth, authorizedRoles("admin"), getAllRestaurants)
+  .get(getAllRestaurants)
   .post(isAuth, authorizedRoles("owner"), createRestaurant);
 
 router

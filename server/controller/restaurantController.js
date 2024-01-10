@@ -53,13 +53,9 @@ exports.updateRestaurant = catchAsyncError(async (req, res, next) => {
 
 exports.deleteRestaurant = catchAsyncError(async (req, res, next) => {
   const doc = await Restaurant.findByIdAndDelete(req.params.id);
-  if (!doc) {
-    return next(new AppError("No documents found with that ID", 404));
-  }
+
   res.status(204).json({
     status: "success",
     data: null,
   });
 });
-
-
