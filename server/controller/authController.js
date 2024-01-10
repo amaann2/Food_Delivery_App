@@ -4,10 +4,16 @@ const catchAsyncError = require("../middleware/catchAsyncError");
 const { sendToken } = require("../utils/sendJwtToken");
 const sendEmail = require("../utils/sendMail");
 const crypto = require("crypto");
+const Cart = require("../model/cartModel");
 
 exports.register = catchAsyncError(async (req, res, next) => {
   const user = await User.create(req.body);
-
+  const newCart = new Cart({
+    user: user._id,
+    menus: [],
+    totalPrice: 0,
+  });
+  await newCart.save();
   sendToken(user, 201, res);
 });
 
