@@ -1,16 +1,16 @@
-import HomeIcon from "@mui/icons-material/Home";
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import ListIcon from "@mui/icons-material/List";
-import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
-import GroupIcon from "@mui/icons-material/Group";
+import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined';
+import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import BarChartIcon from "@mui/icons-material/BarChart";
 import CreateIcon from "@mui/icons-material/Create";
-import FastfoodIcon from "@mui/icons-material/Fastfood";
-import PersonIcon from "@mui/icons-material/Person";
+import FreeBreakfastOutlinedIcon from '@mui/icons-material/FreeBreakfastOutlined';
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 export const sidebarData = [
   {
     title: "Dashboard",
-    icon: <HomeIcon />,
+    icon: <HomeOutlinedIcon />,
     link: "/",
   },
   {
@@ -20,17 +20,17 @@ export const sidebarData = [
   },
   {
     title: "order detail",
-    icon: <InsertDriveFileIcon />,
+    icon: <InsertDriveFileOutlinedIcon />,
     link: "/orderDetail",
   },
   {
     title: "Customer",
-    icon: <GroupIcon />,
+    icon: <PeopleAltOutlinedIcon />,
     link: "/customer",
   },
   {
     title: "customer detail",
-    icon: <PersonIcon />,
+    icon: <PersonOutlineOutlinedIcon />,
     link: "/customerDetail",
   },
   {
@@ -45,12 +45,12 @@ export const sidebarData = [
   },
   {
     title: "Foods",
-    icon: <FastfoodIcon />,
+    icon: <FreeBreakfastOutlinedIcon />,
     link: "/foods",
   },
   {
     title: "Food detail",
-    icon: <HomeIcon />,
+    icon: <HomeOutlinedIcon />,
     link: "/foodDetail",
   },
 
@@ -61,12 +61,12 @@ export const sidebarData = [
   },
   {
     title: "chart",
-    icon: <HomeIcon />,
+    icon: <HomeOutlinedIcon />,
     link: "/chart",
   },
   {
     title: "wallet",
-    icon: <HomeIcon />,
+    icon: <HomeOutlinedIcon />,
     link: "/wallet",
   },
 ];

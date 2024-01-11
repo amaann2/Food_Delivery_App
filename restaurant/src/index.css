@@ -149,6 +149,10 @@ a {
     color: black;
 }
 
+.pt-10 {
+    padding-top: 10px;
+}
+
 
 @media only screen and (max-width: 600px) {
     .row {

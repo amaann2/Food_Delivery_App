@@ -18,6 +18,6 @@ router.post("/resetPassword/:token", resetPassword);
 
 router.get("/logout", logout);
 
-router.route("/").get(isAuth, getAllUser);
+router.route("/").get(isAuth, authorizedRoles("admin"), getAllUser);
 
 module.exports = router;
