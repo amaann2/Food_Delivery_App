@@ -1,7 +1,7 @@
 const app = require("./app");
 const { initDatabase } = require("./config/databaseConnection");
 
-require("dotenv").config({ path: "./config.env" });
+require("dotenv").config({ path: "./.env" });
 
 // Initialize the database connection
 initDatabase();
