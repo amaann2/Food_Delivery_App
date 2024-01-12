@@ -153,6 +153,16 @@ a {
     padding-top: 10px;
 }
 
+.border-radius-right {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.border-radius-left {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+}
 
 @media only screen and (max-width: 600px) {
     .row {

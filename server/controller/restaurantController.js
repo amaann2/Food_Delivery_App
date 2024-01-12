@@ -59,3 +59,11 @@ exports.deleteRestaurant = catchAsyncError(async (req, res, next) => {
     data: null,
   });
 });
+
+exports.getMyRestaurant = catchAsyncError(async (req, res, next) => {
+  const restaurant = await Restaurant.findOne({ owner: req.user._id });
+  res.status(200).json({
+    status: "Success",
+    restaurant,
+  });
+});

@@ -5,6 +5,7 @@ const {
   getRestaurant,
   updateRestaurant,
   deleteRestaurant,
+  getMyRestaurant,
 } = require("../controller/restaurantController");
 const { isAuth, authorizedRoles } = require("../middleware/auth");
 const router = express.Router();
@@ -19,4 +20,6 @@ router
   .get(isAuth, authorizedRoles("owner"), getRestaurant)
   .patch(isAuth, authorizedRoles("owner"), updateRestaurant)
   .delete(isAuth, authorizedRoles("owner", "admin"), deleteRestaurant);
+
+router.get("/myrest/mine", isAuth, authorizedRoles("owner"), getMyRestaurant);
 module.exports = router;

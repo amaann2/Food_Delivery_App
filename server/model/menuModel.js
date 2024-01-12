@@ -6,7 +6,11 @@ const menuSchema = mongoose.Schema({
     required: true,
   },
   description: String,
-  category: String,
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Category",
+    required: true,
+  },
   price: {
     type: Number,
     required: true,

@@ -1,0 +1,25 @@
+.customheader {
+    background-color: #2c9cdb;
+    color: white;
+    font-weight: bold;
+}
+
+
+.MuiDataGrid-virtualScrollerContent {
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 14px;
+    margin-bottom: 15px;
+    font-weight: bolder;
+
+}
+
+.MuiDataGrid-root {
+    border: none !important;
+}
+
+
+.MuiDataGrid-footerContainer {
+    border-radius: 15px;
+    border: none !important;
+}

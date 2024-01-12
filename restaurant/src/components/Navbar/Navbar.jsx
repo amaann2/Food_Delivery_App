@@ -10,7 +10,6 @@ const Navbar = () => {
                     profile details
                 </div>
             </div>
-            <hr />
         </>
     )
 }
