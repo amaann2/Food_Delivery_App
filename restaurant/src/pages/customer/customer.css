@@ -1,8 +1,9 @@
 .customheader {
     background-color: #2c9cdb;
     color: white;
-    font-weight: bold;
+    font-size: 16px;
 }
+
 
 
 .MuiDataGrid-virtualScrollerContent {
@@ -10,7 +11,7 @@
     border-radius: 10px;
     margin-top: 14px;
     margin-bottom: 15px;
-    font-weight: bolder;
+    font-weight: 700;
 
 }
 
@@ -22,4 +23,66 @@
 .MuiDataGrid-footerContainer {
     border-radius: 15px;
     border: none !important;
+}
+
+
+
+/* customer detail page  */
+.customerdetail {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.customerdetail .detailbox,
+.balancebox {
+    background-color: white;
+    margin-right: 1.2rem;
+    min-height: 13rem;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 2px 1px 1px rgb(233, 232, 232);
+    margin-top: 1rem;
+    margin-bottom: .4rem;
+}
+
+.detailbox {
+    width: 63%;
+}
+
+.balancebox {
+    width: 33%;
+}
+
+.customeranalytics {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+
+
+.mostorderbox,
+.mostlikedbox {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    background-color: white;
+    margin-right: 1.2rem;
+    min-height: 28rem;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 2px 1px 1px rgb(233, 232, 232);
+    width: 48%;
+
+}
+
+
+@media only screen and (max-width:800px) {
+
+    .balancebox,
+    .detailbox,
+    .mostorderbox,
+    .mostlikedbox {
+        width: 100%
+    }
 }

@@ -1,5 +1,6 @@
 import { DataGrid } from '@mui/x-data-grid';
 import './customer.css'
+import Topbar from '../../components/Topbar/Topbar';
 const Customer = () => {
     const rows = [
         { id: 1, JoinedDate: '2023-01-01', Name: 'John Doe', location: 'City A', totalspent: '$100', lastorder: '2023-02-15', edit: '' },
@@ -14,7 +15,7 @@ const Customer = () => {
         { id: 10, JoinedDate: '2023-10-15', Name: 'Emily Harris', location: 'City A', totalspent: '$200', lastorder: '2023-11-20', edit: '' },
     ];
     const columns = [
-        { field: 'id', headerName: 'customer id', width: '200', headerClassName: 'customheader border-radius-left', },
+        { field: 'id', headerName: 'Customer ID', width: '200', headerClassName: 'customheader border-radius-left', },
         { field: 'JoinedDate', headerName: 'Joined Date', width: '250', headerClassName: 'customheader', },
         { field: 'Name', headerName: 'Customer Name', width: '200', headerClassName: 'customheader', },
         { field: 'location', headerName: 'Location', width: '230', headerClassName: 'customheader', },
@@ -25,20 +26,8 @@ const Customer = () => {
     return (
 
         <div className="container pt-10">
-            <div className="topbar">
-                <div className="left-topbar">
-                    <h2 className="topbar-heading">General Customer</h2>
-                    <p className="topbar-desc">Here is your general customer data</p>
-                </div>
-                <div className="right-topbar">
-                    <select name="cars" id="cars">
-                        <option value="volvo" selected>On delivery</option>
-                        <option value="saab">Saab</option>
-                        <option value="opel">Opel</option>
-                        <option value="audi">Audi</option>
-                    </select>
-                </div>
-            </div>
+            <Topbar heading={'General Customer'} desc={'Here is your general customer data'} />
+       
             <DataGrid
                 rows={rows}
                 columns={columns}

@@ -1,4 +1,5 @@
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast';
 import './App.css'
 import Sidebar from './components/sidebar/Sidebar'
 import Home from './pages/home/Home'
@@ -10,32 +11,89 @@ import Customer from './pages/customer/Customer'
 import Review from './pages/Review/Review'
 import Foods from './pages/Foods/Foods'
 import FoodDetails from './pages/Foods/FoodDetails'
+import Login from './pages/Accounts/Login'
+import Register from './pages/Accounts/Register'
+import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { loadUser } from './redux/User/userAction'
+import store from './redux/store'
+import { loadRestaurant } from './redux/restaurant/restaurantAction'
+import axios from 'axios';
+axios.defaults.withCredentials = true
 function App() {
+  useEffect(() => {
+    store.dispatch(loadUser())
+    store.dispatch(loadRestaurant())
+  }, [])
 
-  return (
-    <>
-      <div className="app">
+  const Layout = () => {
+    return (
+      <div className='app'>
         <div className="left-sidebar">
           <Sidebar />
         </div>
         <div className="right-sidebar">
           <Navbar />
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/OrderList' element={<OrderList />} />
-            <Route path='/OrderDetail' element={<OrderDetail />} />
-            <Route path='/customer' element={<Customer />} />
-            <Route path='/customerDetail' element={<CustomerDetail />} />
-            <Route path='/analytics' element={<OrderDetail />} />
-            <Route path='/review' element={<Review />} />
-            <Route path='/foods' element={<Foods />} />
-            <Route path='/foodDetail' element={<FoodDetails />} />
-            <Route path='/calendar' element={<OrderDetail />} />
-            <Route path='/chart' element={<OrderDetail />} />
-            <Route path='/wallet' element={<OrderDetail />} />
-          </Routes>
+          <Outlet />
         </div>
       </div>
+    )
+  }
+
+
+  const { isAuthenticated, currentUser } = useSelector(state => state.user)
+  // const { restaurant } = useSelector(state => state.restaurant)
+
+  const toastOptions = {
+    success: {
+      iconTheme: {
+        primary: "#00af74",
+        secondary: "white",
+      }
+    },
+    error: {
+      iconTheme: {
+        primary: "red",
+        secondary: "white",
+      }
+    },
+    style: {
+      fontSize: '.9rem'
+    }
+  }
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: isAuthenticated && currentUser.role === 'owner' ? <Layout /> : <Login />,
+      children: [
+        { path: '/', element: <Home /> },
+        { path: '/OrderList', element: <OrderList /> },
+        { path: '/OrderDetail', element: <OrderDetail /> },
+        { path: '/customer', element: <Customer /> },
+        { path: '/customerDetail', element: <CustomerDetail /> },
+        { path: '/analytics', element: <OrderDetail /> },
+        { path: '/review', element: <Review /> },
+        { path: '/foods', element: <Foods /> },
+        { path: '/foodDetail', element: <FoodDetails /> },
+        { path: '/calendar', element: <OrderDetail /> },
+        { path: '/chart', element: <OrderDetail /> },
+        { path: '/wallet', element: <OrderDetail /> },
+      ],
+    },
+    {
+      path: '/login',
+      element: isAuthenticated ? <Navigate to="/" replace /> : <Login />,
+    },
+    {
+      path: '/Register',
+      element: isAuthenticated ? <Navigate to="/" replace /> : <Register />
+    }
+  ]);
+
+  return (
+    <>
+      <RouterProvider router={router} />
+      <Toaster toastOptions={toastOptions} />
     </>
   )
 }

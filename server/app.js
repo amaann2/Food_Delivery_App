@@ -4,6 +4,8 @@ const { initRoutes } = require("./routes");
 const { initCORS } = require("./middleware/cors");
 const { initLogging } = require("./middleware/Logging");
 const { initRateLimit } = require("./middleware/rate-limit");
+const morgan = require("morgan");
+const cors = require("cors");
 
 const app = express();
 
@@ -11,6 +13,8 @@ const app = express();
 initCORS(app);
 initLogging(app);
 initRateLimit(app);
+
+app.use(morgan("dev"));
 
 app.use(express.json());
 

@@ -16,3 +16,22 @@
     outline: none;
     padding: 10px;
 }
+
+.profile{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    padding-left: 2rem;
+    /* border-left: 1px solid #333333; */
+}
+.profile span{
+    color: #333333;
+    font-weight: 800;
+}
+.profileimg{
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+
+}

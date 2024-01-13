@@ -1,0 +1,126 @@
+.summaryCard {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.summaryCard .card {
+    width: 17rem;
+    max-width: 17rem;
+    background-color: white;
+    height: 8rem;
+    display: flex;
+    gap: 20px;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: inset 1px solid black;
+    margin: 10px .2rem 1rem 10px;
+    box-shadow: 3px 1px 1px rgb(233, 232, 232);
+
+}
+
+.card-icons {
+    width: 4rem;
+    margin-right: 5px;
+}
+
+
+.card-value {
+    font-weight: 800;
+    color: #333333;
+    font-size: 2.3rem;
+    margin-bottom: -12px;
+}
+
+.card-title {
+    font-size: 14px;
+}
+
+
+/* charts  */
+
+.charts {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 1rem;
+    margin: 10px .2rem 1rem 10px;
+
+}
+
+.charts .pie,
+.orderchart {
+    width: 48%;
+    min-height: 230px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 2px 1px 1px rgb(233, 232, 232);
+
+
+}
+
+/* line charts  */
+
+.linecharts {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 1rem;
+    margin: 10px .2rem 1rem 10px;
+}
+
+.linecharts .revenuechart,
+.customerchart {
+    min-height: 230px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 2px 1px 1px rgb(233, 232, 232);
+
+
+}
+
+.revenuechart {
+    min-width: 69%;
+}
+
+.customerchart {
+    min-width: 28%;
+}
+
+/* top review  */
+.topReview {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.topreviewcard {
+    display: flex;
+    padding: 40px 20px;
+    transition: 0.5s;
+    border-radius: 10px;
+    height: 12rem;
+    margin: .4rem 2rem;
+    margin-bottom: 3rem;
+    width: 25rem;
+    background-color: white;
+}
+
+@media only screen and (max-width:800px) {
+    .summaryCard {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .charts .pie,
+    .orderchart,
+    .revenuechart,
+    .customerchart {
+        width: 100%;
+
+    }
+}

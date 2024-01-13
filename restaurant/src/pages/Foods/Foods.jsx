@@ -1,14 +1,14 @@
+import Topbar from "../../components/Topbar/Topbar"
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 const Foods = () => {
     return (
         <div className="container pt-10">
             <div className="topbar">
-                <div className="left-topbar">
-                    <h2 className="topbar-heading">Foods</h2>
-                    <p className="topbar-desc">Here is your Menu summary</p>
-                </div>
+
+                <Topbar heading="Foods" desc="Here is your menu summary" />
                 <div className="right-topbar">
-                    <input type="text" placeholder="search menu" />
-                    <button>New Menu</button>
+                    <input type="text" className="topbar-input" placeholder="search here"/>
+                    <button className="buttonn"><PersonAddIcon /> &nbsp; New Menu</button>
                 </div>
             </div>
         </div>

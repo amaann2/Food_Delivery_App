@@ -24,10 +24,10 @@ const Sidebar = () => {
                     )
                 })}
             </ul>
-            <div className="sidebarFooter">
+            {/* <div className="sidebarFooter">
                 <h5 className='footer-heading'>FoodIn Restaurant admin dashboard</h5>
                 <p className='footer-copyright'>@2024 All Rights Reserved</p>
-            </div>
+            </div> */}
         </div>
     )
 }

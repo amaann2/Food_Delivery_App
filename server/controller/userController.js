@@ -10,3 +10,10 @@ exports.getAllUser = catchAsyncError(async (req, res, next) => {
     user,
   });
 });
+exports.getUser = catchAsyncError(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  res.status(201).json({
+    status: "Success",
+    user,
+  });
+});

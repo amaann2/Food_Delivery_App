@@ -1,6 +1,10 @@
+import Topbar from "../../components/Topbar/Topbar"
+
 const FoodDetails = () => {
     return (
-        <div>FoodDetails</div>
+        <div className="container pt-10">
+            <Topbar heading="Food details" desc="menu item details" />
+        </div>
     )
 }
 

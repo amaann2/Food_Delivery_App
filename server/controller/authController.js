@@ -101,3 +101,8 @@ exports.resetPassword = catchAsyncError(async (req, res, next) => {
   await user.save();
   sendToken(user, 200, res);
 });
+
+exports.getMe = (req, res, next) => {
+  req.params.id = req.user.id;
+  next();
+};
