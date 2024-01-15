@@ -3,7 +3,19 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { Link } from 'react-router-dom'
 import './foods.css'
 import FoodCard from "../../components/FoodCard/FoodCard";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getMyFood } from "../../redux/food/foodAction";
 const Foods = () => {
+    const dispatch = useDispatch()
+    const { restaurant } = useSelector(state => state.restaurant)
+
+    useEffect(() => {
+        dispatch(getMyFood(restaurant._id))
+    }, [dispatch, restaurant])
+
+    const { myFood } = useSelector(state => state.food)
+
     return (
         <div className="container pt-10">
             <div className="topbar">
@@ -44,16 +56,9 @@ const Foods = () => {
                 </div>
             </div>
             <div className="foods flex flex-wrap  gap-8">
-                <FoodCard />
-                <FoodCard />
-                <FoodCard />
-                <FoodCard />
-                <FoodCard />
-                <FoodCard />
-                <FoodCard />
-                <FoodCard />
-                <FoodCard />
-                <FoodCard />
+                {myFood && myFood?.restMenu?.map((menu) => (
+                    <FoodCard key={menu._id} food={menu} />
+                ))}
                 <div className="flex w-full items-center  justify-between border-t  px-4 py-3 sm:px-6">
                     <div className="flex flex-1 justify-between sm:hidden">
                         <a
@@ -71,7 +76,7 @@ const Foods = () => {
                     </div>
                     <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
                         <div>
-                            <p className="text-sm text-gray-700 font-bold">Showing 10 from 100 menus</p>
+                            <p className="text-sm text-gray-700 font-bold">Showing {myFood?.result} from 100 menus</p>
                         </div>
                         <div>
                             <nav

@@ -76,7 +76,9 @@ exports.deleteMyMenu = catchAsyncError(async (req, res, next) => {
 exports.getRestaurantMenu = catchAsyncError(async (req, res, next) => {
   const restaurantId = req.params.restaurantId;
 
-  const restMenu = await Menu.find({ restaurant: restaurantId });
+  const restMenu = await Menu.find({ restaurant: restaurantId }).populate(
+    "category"
+  );
   res.status(200).json({
     status: "Success",
     result: restMenu.length,

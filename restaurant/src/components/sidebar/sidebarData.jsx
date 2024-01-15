@@ -13,27 +13,6 @@ export const sidebarData = [
     link: "/",
   },
   {
-    title: "Order ",
-    icon: <ListIcon />,
-    link: "/orderList",
-  },
-  {
-    title: "Customer",
-    icon: <PeopleAltOutlinedIcon />,
-    link: "/customer",
-  },
-
-  {
-    title: "Analytics",
-    icon: <BarChartIcon />,
-    link: "/analytics",
-  },
-  {
-    title: "Review",
-    icon: <CreateIcon />,
-    link: "/review",
-  },
-  {
     title: "Category",
     icon: <InsertDriveFileOutlinedIcon />,
     link: "/category",
@@ -43,6 +22,28 @@ export const sidebarData = [
     icon: <FreeBreakfastOutlinedIcon />,
     link: "/foods",
   },
+  {
+    title: "Order ",
+    icon: <ListIcon />,
+    link: "/orderList",
+  },
+  {
+    title: "Customer",
+    icon: <PeopleAltOutlinedIcon />,
+    link: "/customer",
+  },
+  {
+    title: "Review",
+    icon: <CreateIcon />,
+    link: "/review",
+  },
+  {
+    title: "Analytics",
+    icon: <BarChartIcon />,
+    link: "/analytics",
+  },
+
+
   {
     title: "calendar",
     icon: <CalendarMonthIcon />,

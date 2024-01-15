@@ -76,7 +76,7 @@ function App() {
         { path: '/review', element: <Review /> },
         { path: '/foods', element: <Foods /> },
         { path: '/addfood', element: <AddFood /> },
-        { path: '/foodDetail', element: <FoodDetails /> },
+        { path: '/foodDetail/:id', element: <FoodDetails /> },
         { path: '/calendar', element: <OrderDetail /> },
         { path: '/chart', element: <OrderDetail /> },
         { path: '/wallet', element: <OrderDetail /> },

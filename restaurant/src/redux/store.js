@@ -8,10 +8,12 @@ import {
 } from "redux";
 import { userReducer } from "./user/userReducer";
 import { restaurantReducer } from "./restaurant/restaurantReducer";
+import { foodReducer } from "./food/foodReducer";
 
 const reducer = combineReducers({
   user: userReducer,
   restaurant: restaurantReducer,
+  food: foodReducer,
 });
 const initialState = {};
 const middleware = [thunk, logger];

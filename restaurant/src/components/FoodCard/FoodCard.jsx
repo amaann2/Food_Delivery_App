@@ -3,19 +3,19 @@ import view from '../../assets/view.png'
 import edit from '../../assets/edit.png'
 import deleteicon from '../../assets/trash.png'
 import { Link } from 'react-router-dom'
-const FoodCard = () => {
+const FoodCard = ({ food }) => {
     return (
         <div className="foodcard  bg-white w-52 mt-16  p-1  rounded-2xl shadow-xl">
-            <div className="img  relative bottom-16 flex justify-center items-center"><img src={pizzaImg} alt="food" className='rounded-full w-36 h-36 shadow-2xl' /></div>
+            <div className="img  relative bottom-16 flex justify-center items-center"><img src={food?.image} alt="food" className='rounded-full w-36 h-36 shadow-2xl' /></div>
             <div className="body relative bottom-10">
-                <h1 className="font-bold text-center pb-3">Spicy mozeralla with Barbeque</h1>
-                <p className="text-center font-semibold"> <span className="text-green-500">Foods</span> / <span className="text-gray-800">Pizza</span> </p>
+                <h1 className="font-bold text-center pb-3">{food?.name}</h1>
+                <p className="text-center font-semibold"> <span className="text-green-500">Foods</span> / <span className="text-gray-800">{food?.category?.name}</span> </p>
 
 
                 <div className="actions flex gap-6 justify-center items-center mt-5">
                     <div className='flex flex-col justify-center items-center  gap-1'>
                         <img src={view} alt="view" className='w-8 p-1 cursor-pointer bg-green-300  rounded-md hover:bg-green-400' />
-                        <Link to="/foodDetail"><p className='text-gray-500 text-sm hover:underline hover:font-bold'>View</p></Link>
+                        <Link to={`/foodDetail/${food?._id}`}><p className='text-gray-500 text-sm hover:underline hover:font-bold'>View</p></Link>
                     </div>
 
                     <div className='flex flex-col justify-center items-center gap-1'>
