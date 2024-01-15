@@ -2,7 +2,6 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import ListIcon from "@mui/icons-material/List";
 import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import BarChartIcon from "@mui/icons-material/BarChart";
 import CreateIcon from "@mui/icons-material/Create";
 import FreeBreakfastOutlinedIcon from '@mui/icons-material/FreeBreakfastOutlined';
@@ -14,25 +13,16 @@ export const sidebarData = [
     link: "/",
   },
   {
-    title: "Order list",
+    title: "Order ",
     icon: <ListIcon />,
     link: "/orderList",
-  },
-  {
-    title: "order detail",
-    icon: <InsertDriveFileOutlinedIcon />,
-    link: "/orderDetail",
   },
   {
     title: "Customer",
     icon: <PeopleAltOutlinedIcon />,
     link: "/customer",
   },
-  {
-    title: "customer detail",
-    icon: <PersonOutlineOutlinedIcon />,
-    link: "/customerDetail",
-  },
+
   {
     title: "Analytics",
     icon: <BarChartIcon />,
@@ -44,16 +34,15 @@ export const sidebarData = [
     link: "/review",
   },
   {
+    title: "Category",
+    icon: <InsertDriveFileOutlinedIcon />,
+    link: "/category",
+  },
+  {
     title: "Foods",
     icon: <FreeBreakfastOutlinedIcon />,
     link: "/foods",
   },
-  {
-    title: "Food detail",
-    icon: <HomeOutlinedIcon />,
-    link: "/foodDetail",
-  },
-
   {
     title: "calendar",
     icon: <CalendarMonthIcon />,

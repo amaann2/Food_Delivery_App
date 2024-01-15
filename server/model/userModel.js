@@ -62,7 +62,7 @@ const userSchema = mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ["user", "customer", "owner", "admin", "rider"],
+    enum: ["user", "owner", "admin"],
     default: "user",
     required: true,
   },
@@ -80,7 +80,7 @@ const userSchema = mongoose.Schema({
 
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
-  this.password = await bcrypt.hash(this.password,12);
+  this.password = await bcrypt.hash(this.password, 12);
   this.confirmPassword = undefined;
   next();
 });
