@@ -1,6 +1,7 @@
 const catchAsyncError = require("../middleware/catchAsyncError");
 const Menu = require("../model/menuModel");
 const Restaurant = require("../model/restaurantsModel");
+const ApiFeatures = require("../utils/apiFeatures");
 const AppError = require("../utils/appError");
 
 exports.createMenu = catchAsyncError(async (req, res, next) => {
@@ -23,7 +24,12 @@ exports.createMenu = catchAsyncError(async (req, res, next) => {
 });
 
 exports.getAllMenu = catchAsyncError(async (req, res, next) => {
-  const menus = await Menu.find();
+  const feature = new ApiFeatures(Menu.find(), req.query)
+    .sort()
+    .search()
+    .filter()
+    .pagination();
+  const menus = await feature.query.populate("category");
   res.status(200).json({
     status: "Success",
     result: menus.length,
@@ -75,13 +81,35 @@ exports.deleteMyMenu = catchAsyncError(async (req, res, next) => {
 
 exports.getRestaurantMenu = catchAsyncError(async (req, res, next) => {
   const restaurantId = req.params.restaurantId;
+  const feature = new ApiFeatures(
+    Menu.find({ restaurant: restaurantId }),
+    req.query
+  )
+    .filter()
+    .pagination()
+    .search()
+    .sort();
 
-  const restMenu = await Menu.find({ restaurant: restaurantId }).populate(
-    "category"
-  );
+  const menuCount = await Menu.countDocuments();
+  const restMenu = await feature.query.populate("category");
   res.status(200).json({
     status: "Success",
+    total: menuCount,
     result: restMenu.length,
     restMenu,
+  });
+});
+
+exports.getMenuByCategory = catchAsyncError(async (req, res, next) => {
+  const categoryId = req.params.categoryId;
+
+  const catMenu = await Menu.find({ category: categoryId }).populate(
+    "category"
+  );
+
+  res.status(200).json({
+    status: "Success",
+    result: catMenu.length,
+    catMenu,
   });
 });

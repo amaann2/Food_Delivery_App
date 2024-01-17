@@ -7,6 +7,7 @@ const {
   updateMyMenu,
   deleteMyMenu,
   getRestaurantMenu,
+  getMenuByCategory,
 } = require("../controller/menuController");
 const router = express.Router();
 
@@ -22,5 +23,6 @@ router
   .delete(isAuth, authorizedRoles("owner"), deleteMyMenu);
 
 router.get("/restaurant/:restaurantId", getRestaurantMenu);
+router.get("/category/:categoryId", getMenuByCategory);
 
 module.exports = router;

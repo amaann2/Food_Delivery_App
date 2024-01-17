@@ -20,6 +20,7 @@ import store from './redux/store'
 import { loadRestaurant } from './redux/restaurant/restaurantAction'
 import axios from 'axios';
 import AddFood from './pages/Foods/AddFood';
+import Category from './pages/Category/Category';
 axios.defaults.withCredentials = true
 function App() {
   useEffect(() => {
@@ -76,6 +77,7 @@ function App() {
         { path: '/review', element: <Review /> },
         { path: '/foods', element: <Foods /> },
         { path: '/addfood', element: <AddFood /> },
+        { path: '/category', element: <Category /> },
         { path: '/foodDetail/:id', element: <FoodDetails /> },
         { path: '/calendar', element: <OrderDetail /> },
         { path: '/chart', element: <OrderDetail /> },

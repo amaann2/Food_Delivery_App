@@ -1,7 +1,40 @@
 import { Link } from "react-router-dom"
 import Topbar from "../../components/Topbar/Topbar"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { getAllCategory } from "../../redux/category/categoryAction"
 
 const AddFood = () => {
+    const [foodData, setFoodData] = useState({
+        name: "",
+        description: "",
+        category: "",
+        price: "",
+        image: ""
+    })
+    const handleChange = (e) => {
+        setFoodData({
+            ...foodData,
+            [e.target.name]: e.target.value
+        })
+    }
+    const handleCategoryChange = (e) => {
+        setFoodData({
+            ...foodData,
+            category: e.target.value
+        })
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(foodData)
+    }
+    const dispatch = useDispatch()
+    const { category } = useSelector(state => state.category)
+    useEffect(() => {
+        dispatch(getAllCategory())
+
+    }, [dispatch])
+    console.log(category.categories)
     return (
         <div className="container pt-10 ">
             <Link to="/foods"><p> &#8592; back</p></Link>
@@ -9,7 +42,7 @@ const AddFood = () => {
                 <Topbar heading="Add Food" />
 
 
-                <form className="w-full max-w-lg flex flex-col  ">
+                <form className="w-full max-w-lg flex flex-col" onSubmit={handleSubmit}>
                     <div className="flex flex-wrap -mx-3 mb-6">
                         <div className="w-full px-3">
                             <label
@@ -23,6 +56,9 @@ const AddFood = () => {
                                 id="name"
                                 type="text"
                                 placeholder="Name"
+                                name="name"
+                                value={foodData.name}
+                                onChange={handleChange}
                             />
                         </div>
                     </div>
@@ -39,6 +75,9 @@ const AddFood = () => {
                                 id="grid-password"
                                 type="text"
                                 placeholder="Description"
+                                name="description"
+                                value={foodData.description}
+                                onChange={handleChange}
                             />
                         </div>
                     </div>
@@ -55,6 +94,9 @@ const AddFood = () => {
                                 id="price"
                                 type="number"
                                 placeholder="Price"
+                                name="price"
+                                value={foodData.price}
+                                onChange={handleChange}
                             />
                         </div>
                         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -67,11 +109,12 @@ const AddFood = () => {
                             <div className="relative">
                                 <select
                                     className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-state"
+                                    id="grid-state" value={foodData.category} onChange={handleCategoryChange}
                                 >
-                                    <option>New Mexico</option>
-                                    <option>Missouri</option>
-                                    <option>Texas</option>
+                                    <option value="" selected>select category</option>
+                                    {category?.categories?.map((cat) => (
+                                        <option value={cat._id} key={cat._id}>{cat.name}</option>
+                                    ))}
                                 </select>
                                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                                     <svg
@@ -101,7 +144,7 @@ const AddFood = () => {
                             />
                         </div>
                     </div>
-                    <button className="buttonn mtt-25" type="submit">create</button>
+                    <button className="buttonn mtt-25" >create</button>
                 </form>
             </div>
 

@@ -9,11 +9,13 @@ import {
 import { userReducer } from "./user/userReducer";
 import { restaurantReducer } from "./restaurant/restaurantReducer";
 import { foodReducer } from "./food/foodReducer";
+import { categoryReducer } from "./category/categoryReducer";
 
 const reducer = combineReducers({
   user: userReducer,
   restaurant: restaurantReducer,
   food: foodReducer,
+  category: categoryReducer,
 });
 const initialState = {};
 const middleware = [thunk, logger];
