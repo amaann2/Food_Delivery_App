@@ -7,10 +7,18 @@ const sendDevelopmentError = (err, res) => {
   });
 };
 const sendProductionError = (err, res) => {
-  res.status(err.statusCode).json({
-    status: err.status,
-    message: err.message,
-  });
+  if (err.isOperational) {
+    res.status(err.statusCode).json({
+      status: err.status,
+      message: err.message,
+    });
+  } else {
+    console.log(err);
+    res.status(err.statusCode).json({
+      status: "fail",
+      message: "Something went very wrong",
+    });
+  }
 };
 module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;

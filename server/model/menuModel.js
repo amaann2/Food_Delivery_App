@@ -21,7 +21,14 @@ const menuSchema = mongoose.Schema({
       message: "Price must be a non-negative value",
     },
   },
-  image: String,
+  image: {
+    public_id: {
+      type: String,
+    },
+    url: {
+      type: String,
+    },
+  },
   restaurant: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Restaurant",

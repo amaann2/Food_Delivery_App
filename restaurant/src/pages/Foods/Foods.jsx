@@ -11,7 +11,7 @@ import { getAllCategory } from "../../redux/category/categoryAction";
 const Foods = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [search, setSearch] = useState('')
-    const [limit] = useState(2)
+    const [limit] = useState(10)
 
 
     const dispatch = useDispatch()
@@ -25,7 +25,6 @@ const Foods = () => {
     useEffect(() => {
         dispatch(getMyFood(restaurant._id, currentPage, limit, search))
         dispatch(getAllCategory())
-
     }, [dispatch, restaurant, currentPage, limit, search])
 
 
@@ -103,7 +102,7 @@ const Foods = () => {
                                     <button
                                         key={num}
                                         aria-current="page"
-                                        className={`relative inline-flex items-center px-4  text-sm font-semibold  bg-white text-gray-900 ring-1  ${num === currentPage ? ' bg-gray-300' : 'text-gray-900'}  ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 border-none`}
+                                        className={`relative inline-flex items-center px-4  text-sm font-semibold  ${num === currentPage ? ' bg-slate-300' : 'text-gray-900'}   bg-white text-gray-900 ring-1  ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 border-none`}
                                         onClick={() => handlePageChange(num)}
                                     >
                                         {num}

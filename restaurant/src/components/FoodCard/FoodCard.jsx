@@ -6,7 +6,7 @@ const FoodCard = ({ food }) => {
     return (
         <div className="bg-white w-52 mt-16  p-1  rounded-2xl shadow-xl">
             {/* image  */}
-            <div className="relative bottom-16 flex justify-center items-center"><img src={food?.image} alt="food" className='rounded-full w-36 h-36 shadow-2xl' /></div>
+            <div className="relative bottom-16 flex justify-center items-center"><img src={food?.image?.url} alt="food" className='rounded-full w-36 h-36 shadow-2xl' /></div>
             {/* body  */}
             <div className="relative bottom-10">
                 <h1 className="font-bold text-center pb-3">{food?.name}</h1>

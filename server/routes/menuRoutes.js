@@ -9,17 +9,18 @@ const {
   getRestaurantMenu,
   getMenuByCategory,
 } = require("../controller/menuController");
+const upload = require("../utils/multer");
 const router = express.Router();
 
 router
   .route("/")
   .get(getAllMenu)
-  .post(isAuth, authorizedRoles("owner"), createMenu);
+  .post(isAuth, authorizedRoles("owner"), upload.single("image"), createMenu);
 
 router
   .route("/:id")
   .get(getSingleMenu)
-  .patch(isAuth, authorizedRoles("owner"), updateMyMenu)
+  .patch(isAuth, authorizedRoles("owner"), upload.single("image"), updateMyMenu)
   .delete(isAuth, authorizedRoles("owner"), deleteMyMenu);
 
 router.get("/restaurant/:restaurantId", getRestaurantMenu);

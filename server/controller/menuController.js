@@ -3,8 +3,16 @@ const Menu = require("../model/menuModel");
 const Restaurant = require("../model/restaurantsModel");
 const ApiFeatures = require("../utils/apiFeatures");
 const AppError = require("../utils/appError");
-
+const cloudinary = require("../utils/cloudinary");
 exports.createMenu = catchAsyncError(async (req, res, next) => {
+  const mycloud = await cloudinary.uploader.upload(req.file.path, {
+    folder: "Food_delivery_app",
+  });
+  const imageData = {
+    public_id: mycloud.public_id,
+    url: mycloud.secure_url,
+  };
+
   const restaurant = await Restaurant.findOne({ owner: req.user._id });
   if (!restaurant) {
     return next(new AppError("Restaurant not found or unauthorized", 404));
@@ -12,6 +20,7 @@ exports.createMenu = catchAsyncError(async (req, res, next) => {
 
   const newMenu = await Menu.create({
     ...req.body,
+    image: imageData,
     restaurant: restaurant._id,
   });
   restaurant.menu.push(newMenu._id);
@@ -47,9 +56,22 @@ exports.getSingleMenu = catchAsyncError(async (req, res, next) => {
   });
 });
 exports.updateMyMenu = catchAsyncError(async (req, res, next) => {
-  const menu = await Menu.findByIdAndUpdate(req.params.id, req.body, {
+  let image = {};
+  if (req.file) {
+    const myCloud = await cloudinary.uploader.upload(req.file.path, {
+      folder: "Food_delivery_app",
+    });
+    image = {
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url,
+    };
+  }
+  const updateFields = { ...req.body, image: { ...image } };
+
+  const menu = await Menu.findByIdAndUpdate(req.params.id, updateFields, {
     new: true,
-    runValidator: true,
+    runValidators: true,
+    useFindAndModify: false,
   });
   if (!menu) {
     return next(new AppError("There is no Menu with that id", 404));
