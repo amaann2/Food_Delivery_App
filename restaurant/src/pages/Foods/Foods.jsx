@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 import { getMyFood } from "../../redux/food/foodAction";
 import FoodCardSkeleton from "../../components/FoodCard/FoodCardSkeleton";
 import { getAllCategory } from "../../redux/category/categoryAction";
+import axios from "axios";
+import toast from "react-hot-toast";
 const Foods = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [search, setSearch] = useState('')
@@ -20,14 +22,24 @@ const Foods = () => {
     const { myFood, loading } = useSelector(state => state.food)
 
 
-    // const loading = true
 
     useEffect(() => {
         dispatch(getMyFood(restaurant._id, currentPage, limit, search))
         dispatch(getAllCategory())
     }, [dispatch, restaurant, currentPage, limit, search])
 
-
+    const deleteMyFood = async (id) => {
+        alert('Are you sure you want to delete the food?')
+        try {
+            const data = await axios.delete(`/api/v1/menu/${id}`, { withCredentials: true })
+            if (data.status === 204) {
+                toast.success('Food deleted')
+                dispatch(getMyFood(restaurant._id, currentPage, limit, search))
+            }
+        } catch (error) {
+            toast.error(error.response.data.message)
+        }
+    }
 
     const totalPage = Math.ceil(myFood?.total / limit)
     const handlePageChange = (pageNumber) => {
@@ -82,7 +94,7 @@ const Foods = () => {
                 {/* menu  */}
 
                 {loading ? <FoodCardSkeleton /> : myFood && myFood?.restMenu?.map((menu) => (
-                    <FoodCard key={menu._id} food={menu} />
+                    <FoodCard key={menu._id} food={menu} deleteMyFood={deleteMyFood} />
                 ))}
 
                 {/* menu footer  */}

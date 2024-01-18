@@ -1,26 +1,39 @@
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import Topbar from "../../components/Topbar/Topbar"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getAllCategory } from "../../redux/category/categoryAction"
 import toast from "react-hot-toast"
 import axios from "axios"
+import { getSingleFood } from "../../redux/food/foodAction"
 
-const AddFood = () => {
+const EditFood = () => {
+    const dispatch = useDispatch()
+    const { id } = useParams()
+
+    const { food } = useSelector(state => state.food)
+    useEffect(() => {
+        dispatch(getSingleFood(id));
+    }, [dispatch, id])
+
+
     const [foodData, setFoodData] = useState({
-        name: "",
-        description: "",
-        category: "",
-        price: "",
+        name: food?.menu?.name || '',
+        description: food?.menu?.description || '',
+        category: food?.menu?.category || '',
+        price: food?.menu?.price || '',
     })
-    const [image, setImageData] = useState('')
+
+    const [image, setImageData] = useState(food?.menu?.image || '')
 
     const handleChange = (e) => {
         setFoodData({
             ...foodData,
             [e.target.name]: e.target.value
         })
-    }
+
+    };
+
     const handleCategoryChange = (e) => {
         setFoodData({
             ...foodData,
@@ -34,29 +47,22 @@ const AddFood = () => {
         formData.append('description', foodData.description);
         formData.append('category', foodData.category);
         formData.append('price', foodData.price);
-        formData.append('image', image[0]);
+        // formData.append('image', image);
+
         try {
-            const { data } = await axios.post('/api/v1/menu', formData, {
+            const { data } = await axios.patch(`/api/v1/menu/${id}`, formData, {
                 withCredentials: true,
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             })
             if (data.status === 'Success') {
-                setFoodData({
-                    name: "",
-                    description: "",
-                    category: "",
-                    price: "",
-                })
-                setImageData('')
                 toast.success(data?.status)
             }
         } catch (error) {
             toast.error(error.reponse.data.message)
         }
     }
-    const dispatch = useDispatch()
     const { category } = useSelector(state => state.category)
     useEffect(() => {
         dispatch(getAllCategory())
@@ -66,7 +72,7 @@ const AddFood = () => {
         <div className="container pt-10 ">
             <Link to="/foods"><p> &#8592; back</p></Link>
             <div className="flex flex-col items-center justify-center">
-                <Topbar heading="Add Food" />
+                <Topbar heading="Edit Food" />
 
 
                 <form className="w-full max-w-lg flex flex-col" onSubmit={handleSubmit} encType="multipart/form-data">
@@ -168,7 +174,7 @@ const AddFood = () => {
                                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="image"
                                 type="file"
-                                onChange={(e) => setImageData(e.target.files)}
+                                onChange={(e) => setImageData(e.target.files[0])}
                             />
                         </div>
                     </div>
@@ -180,4 +186,4 @@ const AddFood = () => {
     )
 }
 
-export default AddFood
+export default EditFood

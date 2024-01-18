@@ -2,7 +2,10 @@ import view from '../../assets/view.png'
 import edit from '../../assets/edit.png'
 import deleteicon from '../../assets/trash.png'
 import { Link } from 'react-router-dom'
-const FoodCard = ({ food }) => {
+
+const FoodCard = ({ food, deleteMyFood }) => {
+
+
     return (
         <div className="bg-white w-52 mt-16  p-1  rounded-2xl shadow-xl">
             {/* image  */}
@@ -18,19 +21,19 @@ const FoodCard = ({ food }) => {
                 <div className="flex gap-6 justify-center items-center mt-5">
 
                     <div className='flex flex-col justify-center items-center  gap-1'>
-                        <img src={view} alt="view" className='w-8 p-1 cursor-pointer bg-green-300  rounded-md hover:bg-green-400' />
-                        <Link to={`/foodDetail/${food?._id}`}><p className='text-gray-500 text-sm hover:underline hover:font-bold'>View</p></Link>
+                        <Link to={`/foodDetail/${food?._id}`}><img src={view} alt="view" className='w-8 p-1 cursor-pointer bg-green-300  rounded-md hover:bg-green-400' /></Link>
+                        <p className='text-gray-500 text-sm '>View</p>
                     </div>
 
                     <div className='flex flex-col justify-center items-center gap-1'>
-                        <img src={edit} alt="view" className='w-8 p-1 cursor-pointer bg-red-300 rounded-md hover:bg-red-400' />
-                        <Link to="/editfood"><p className='text-gray-500 text-sm hover:underline hover:font-bold'>Edit</p></Link>
+                        <Link to={`/editfood/${food._id}`}><img src={edit} alt="view" className='w-8 p-1 cursor-pointer bg-red-300 rounded-md hover:bg-red-400' /></Link>
+                        <p className='text-gray-500 text-sm '>Edit</p>
 
                     </div>
 
                     <div className='flex flex-col justify-center items-center gap-1'>
-                        <img src={deleteicon} alt="view" className='w-8 p-1 cursor-pointer bg-blue-300 rounded-md hover:bg-blue-400' />
-                        <p className='text-gray-500 text-sm hover:underline hover:font-bold'>Delete</p>
+                        <img src={deleteicon} alt="view" className='w-8 p-1 cursor-pointer bg-blue-300 rounded-md hover:bg-blue-400' onClick={() => deleteMyFood(food._id)} />
+                        <p className='text-gray-500 text-sm ' >Delete</p>
                     </div>
 
                 </div>

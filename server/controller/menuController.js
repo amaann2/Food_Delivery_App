@@ -68,6 +68,7 @@ exports.updateMyMenu = catchAsyncError(async (req, res, next) => {
   }
   const updateFields = { ...req.body, image: { ...image } };
 
+  
   const menu = await Menu.findByIdAndUpdate(req.params.id, updateFields, {
     new: true,
     runValidators: true,
@@ -89,6 +90,11 @@ exports.deleteMyMenu = catchAsyncError(async (req, res, next) => {
   const restaurant = await Restaurant.findById(menu.restaurant);
   if (!restaurant) {
     return next(new AppError("Restaurant not found", 404));
+  }
+
+  // delete the image from cloudinary also
+  if (menu.image && menu.image.public_id) {
+    await cloudinary.uploader.destroy(menu.image.public_id);
   }
   restaurant.menu.pull(menu._id);
   await restaurant.save();
