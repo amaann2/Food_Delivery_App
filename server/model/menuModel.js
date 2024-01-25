@@ -29,6 +29,22 @@ const menuSchema = mongoose.Schema({
       type: String,
     },
   },
+  tags: {
+    type: String,
+    enum: [
+      "vegetarian",
+      "non-vegetarian",
+      "Vegan",
+      "Spicy",
+      "Low-Calorie",
+      "Gluten-Free",
+      "Organic",
+      "Chef's Special",
+      "Dessert",
+      "Beverages",
+      "Breakfast",
+    ],
+  },
   restaurant: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Restaurant",

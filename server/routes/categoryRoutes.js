@@ -7,15 +7,26 @@ const {
   deleteCategory,
 } = require("../controller/categoryController");
 const { isAuth, authorizedRoles } = require("../middleware/auth");
+const upload = require("../utils/multer");
 const router = express.Router();
 
 router
   .route("/")
   .get(getAllCategory)
-  .post(isAuth, authorizedRoles("admin"), createCategory);
+  .post(
+    isAuth,
+    authorizedRoles("admin"),
+    upload.single("image"),
+    createCategory
+  );
 router
   .route("/:id")
   .get(getCategory)
-  .patch(isAuth, authorizedRoles("admin"), updateCategory)
+  .patch(
+    isAuth,
+    authorizedRoles("admin"),
+    upload.single("image"),
+    updateCategory
+  )
   .delete(isAuth, authorizedRoles("admin"), deleteCategory);
 module.exports = router;

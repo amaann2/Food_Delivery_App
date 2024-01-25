@@ -5,6 +5,14 @@ const CategorySchema = mongoose.Schema({
     required: true,
     unique: true,
   },
+  image: {
+    public_id: {
+      type: String,
+    },
+    url: {
+      type: String,
+    },
+  },
   createdAt: {
     type: Date,
     default: Date.now,
